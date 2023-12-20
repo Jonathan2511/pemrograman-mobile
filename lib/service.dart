@@ -23,4 +23,30 @@ abstract class Services {
       rethrow;
     }
   }
+
+  static Future<Response?> register(
+      {required String nim, required String password, required String name}) async {
+    try {
+      Response? response = await Dio().post(
+        '$apiUrl/register',
+        options: Options(
+          headers: {
+            'Accept' : 'application/json',
+          }
+        ),
+        data: {
+          'nim' : nim,
+          'name' : name,
+          'password': password
+        }
+      );
+      if(response.statusCode == 201){
+        return response;
+      } else{
+        throw Exception(response.data['message']);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
