@@ -5,10 +5,12 @@ Widget textFieldBuilder({
   required TextEditingController controller,
   required bool obsecureText,
   TextInputType keyboardType = TextInputType.text,
+  int maxLines = 1,
 }) {
   return TextField(
       controller: controller,
       keyboardType: keyboardType,
+      maxLines: maxLines,
       obscureText: obsecureText,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(

@@ -1,12 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sesi10sampai14/main_page.dart';
 import 'package:sesi10sampai14/service.dart';
 import 'package:sesi10sampai14/text_field_builder.dart';
 import 'register.dart';
-import 'package:dio/dio.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -67,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                               nim: nim, password: password);
                           if (mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(response!["message"])));
+                                SnackBar(content: Text(response["message"])));
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
