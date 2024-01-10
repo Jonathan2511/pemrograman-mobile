@@ -81,6 +81,16 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     obsecureText: false),
               ],
             ),
+            actions: [
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Batal'),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Post'),
+              )
+            ],
           );
         });
   }

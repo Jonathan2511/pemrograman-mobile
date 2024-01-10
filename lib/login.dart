@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                               nim: nim, password: password);
                           if (mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(response["message"])));
+                                SnackBar(content: Text(response!["message"])));
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
