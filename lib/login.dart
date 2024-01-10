@@ -33,10 +33,10 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               textFieldBuilder(
-                label: "NIM",
-                controller: nimController,
-                obsecureText: false,
-              ),
+                  label: "NIM",
+                  controller: nimController,
+                  obsecureText: false,
+                  keyboardType: TextInputType.number),
               SizedBox(
                 height: 8,
               ),

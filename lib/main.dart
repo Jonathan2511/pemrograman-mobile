@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
           useMaterial3: true),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

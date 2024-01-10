@@ -8,18 +8,32 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+// mixin buat controller tab bar
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+  late final TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Main Page"),
+        title: const Text("Main Page"),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(
+              text: "Post",
+            ),
+            Tab(
+              text: "My Post",
+            )
+          ],
+        ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Center(
-            child: Text(widget.token),
-          )),
     );
   }
 }

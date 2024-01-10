@@ -27,15 +27,18 @@ class RegisterPageState extends State<RegisterPage> {
         child: Column(
           children: [
             textFieldBuilder(
-              label: "Name",
-              controller: nameController,
-              obsecureText: false,
-            ),
+                label: "Name",
+                controller: nameController,
+                obsecureText: false,
+                keyboardType: TextInputType.text),
             SizedBox(
               height: 8,
             ),
             textFieldBuilder(
-                label: "NIM", controller: nimController, obsecureText: false),
+                label: "NIM",
+                controller: nimController,
+                obsecureText: false,
+                keyboardType: TextInputType.number),
             SizedBox(
               height: 8,
             ),
@@ -51,7 +54,6 @@ class RegisterPageState extends State<RegisterPage> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-
                       showConfirmationDialog(context);
                     },
                     child: Text("Register")),
@@ -62,74 +64,73 @@ class RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-  void showConfirmationDialog(BuildContext context){
+
+  void showConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text('Konfirmasi'),
           content: Text('Apakah anda yakin?'),
-          actions:[
+          actions: [
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text('Tidak'),
             ),
             ElevatedButton(
-              onPressed: () async{
+              onPressed: () async {
                 String nim = nimController.text.trim();
                 String password = passwordController.text;
                 String name = nameController.text.trim();
-                try{
+                try {
                   Response? response = await Services.register(
-                      name: name,
-                      nim: nim,
-                      password: password,
+                    name: name,
+                    nim: nim,
+                    password: password,
                   );
-                  if(mounted) {
+                  if (mounted) {
                     Navigator.of(context).pop();
                     showDialog(
                         context: context,
-                        builder: (context){
-                        return AlertDialog(
-                        title: Text('Berhasil'),
-                        content: Text(response!.data['message']),
-                          actions: [
-                            ElevatedButton(
-                              onPressed: (){
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Ok'),
-                            )
-                          ],
-                      );
-
-                    });
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Berhasil'),
+                            content: Text(response!.data['message']),
+                            actions: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Ok'),
+                              )
+                            ],
+                          );
+                        });
                     nameController.clear();
                     nimController.clear();
                     passwordController.clear();
                   }
-                }catch(e){
+                } catch (e) {
                   debugPrint(e.toString());
-                  if(mounted){
+                  if (mounted) {
                     Navigator.of(context).pop();
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text('Gagal'),
-                          content: Text(
-                            e.toString(),
-                          ),
-                          actions: [
-                            ElevatedButton(
-                                onPressed: (){
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Ok'))
-                          ],
-                        )
-                    );
+                              title: Text('Gagal'),
+                              content: Text(
+                                e.toString(),
+                              ),
+                              actions: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Ok'))
+                              ],
+                            ));
                   }
                 }
               },
@@ -142,5 +143,3 @@ class RegisterPageState extends State<RegisterPage> {
     );
   }
 }
-
-
